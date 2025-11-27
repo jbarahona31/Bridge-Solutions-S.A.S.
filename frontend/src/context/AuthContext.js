@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
     const response = await authService.register(userData);
     const token = response.token;
-    const usuario = response.user;
+    const usuario = response.usuario;
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(usuario));
     setUser(usuario);
