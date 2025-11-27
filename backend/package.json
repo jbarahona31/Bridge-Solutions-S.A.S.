@@ -1,0 +1,28 @@
+{
+  "name": "bridge-solutions-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Bridge Solutions S.A.S. - Avalúos, Valoración Financiera y Consultoría Empresarial",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["avaluos", "valoracion", "consultoria", "bridge-solutions"],
+  "author": "Bridge Solutions S.A.S.",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-validator": "^7.3.1",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "mysql2": "^3.15.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

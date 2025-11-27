@@ -1,0 +1,174 @@
+.admin-dashboard {
+  padding: var(--spacing-xl) 0;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* Admin Cotizaciones */
+.admin-cotizaciones {
+  padding: var(--spacing-xl) 0;
+}
+
+.filters-bar {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.filter-group label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-light);
+}
+
+.filter-group select,
+.filter-group input {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid #ddd;
+  border-radius: var(--radius-md);
+  min-width: 150px;
+}
+
+.export-buttons {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-left: auto;
+}
+
+/* Admin Cotizacion Detail */
+.admin-cotizacion-detail {
+  padding: var(--spacing-xl) 0;
+}
+
+.admin-cotizacion-card {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-xl);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.admin-cotizacion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.user-info-box {
+  background-color: var(--color-gray-light);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.user-info-box h4 {
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-light);
+}
+
+.estado-selector {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.estado-btn {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.estado-btn.pendiente {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.estado-btn.pendiente.active,
+.estado-btn.pendiente:hover {
+  border-color: #ffc107;
+}
+
+.estado-btn.en_revision {
+  background-color: #d1ecf1;
+  color: #0c5460;
+}
+
+.estado-btn.en_revision.active,
+.estado-btn.en_revision:hover {
+  border-color: #17a2b8;
+}
+
+.estado-btn.aprobada {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.estado-btn.aprobada.active,
+.estado-btn.aprobada:hover {
+  border-color: #28a745;
+}
+
+.estado-btn.rechazada {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.estado-btn.rechazada.active,
+.estado-btn.rechazada:hover {
+  border-color: #dc3545;
+}
+
+.admin-actions {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--color-gray-light);
+}
+
+.badge-admin {
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.badge-user {
+  background-color: var(--color-gray-light);
+  color: var(--color-text);
+}
+
+@media (max-width: 768px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .export-buttons {
+    margin-left: 0;
+    margin-top: var(--spacing-md);
+  }
+  
+  .estado-selector {
+    flex-wrap: wrap;
+  }
+}
