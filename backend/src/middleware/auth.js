@@ -24,7 +24,7 @@ const authMiddleware = (req, res, next) => {
 };
 
 const adminMiddleware = (req, res, next) => {
-  if (req.user.rol !== 'administrador') {
+  if (req.user.rol !== 'administrador' && req.user.rol !== 'admin') {
     return res.status(403).json({ message: 'Acceso denegado. Se requiere rol de administrador' });
   }
   next();
