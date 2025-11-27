@@ -5,10 +5,10 @@ const config = require('../config');
 
 const register = async (req, res) => {
   try {
-    const { nombre, correo, usuario, contraseña, rol } = req.body;
+    const { nombre_completo, email, usuario, contraseña, rol } = req.body;
 
-    // Check if correo already exists
-    const existingEmail = await Usuario.findByEmail(correo);
+    // Check if email already exists
+    const existingEmail = await Usuario.findByEmail(email);
     if (existingEmail) {
       return res.status(400).json({ message: 'El correo electrónico ya está registrado' });
     }
@@ -25,11 +25,11 @@ const register = async (req, res) => {
 
     // Create user
     const result = await Usuario.create({
-      nombre,
-      correo,
+      nombre_completo,
+      email,
       usuario,
       contraseña_hash,
-      rol: rol || 'usuario'
+      rol: rol || 'cliente'
     });
 
     // Get created user
@@ -37,7 +37,7 @@ const register = async (req, res) => {
 
     // Generate token
     const token = jwt.sign(
-      { id: newUser.id, correo: newUser.correo, rol: newUser.rol },
+      { id: newUser.id, email: newUser.email, rol: newUser.rol },
       config.jwt.secret,
       { expiresIn: config.jwt.expire }
     );
@@ -55,10 +55,10 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const { correo, contraseña } = req.body;
+    const { email, contraseña } = req.body;
 
-    // Find user by correo
-    const user = await Usuario.findByEmail(correo);
+    // Find user by email
+    const user = await Usuario.findByEmail(email);
     if (!user) {
       return res.status(401).json({ message: 'Credenciales inválidas' });
     }
@@ -71,7 +71,7 @@ const login = async (req, res) => {
 
     // Generate token
     const token = jwt.sign(
-      { id: user.id, correo: user.correo, rol: user.rol },
+      { id: user.id, email: user.email, rol: user.rol },
       config.jwt.secret,
       { expiresIn: config.jwt.expire }
     );
@@ -81,8 +81,8 @@ const login = async (req, res) => {
       token,
       usuario: {
         id: user.id,
-        nombre: user.nombre,
-        correo: user.correo,
+        nombre_completo: user.nombre_completo,
+        email: user.email,
         rol: user.rol
       }
     });
@@ -107,15 +107,15 @@ const getProfile = async (req, res) => {
 
 const updateProfile = async (req, res) => {
   try {
-    const { nombre, correo } = req.body;
+    const { nombre_completo, email } = req.body;
 
-    // Check if correo is already used by another user
-    const existingEmail = await Usuario.findByEmail(correo);
+    // Check if email is already used by another user
+    const existingEmail = await Usuario.findByEmail(email);
     if (existingEmail && existingEmail.id !== req.user.id) {
       return res.status(400).json({ message: 'El correo electrónico ya está en uso' });
     }
 
-    await Usuario.updateById(req.user.id, { nombre, correo });
+    await Usuario.updateById(req.user.id, { nombre_completo, email });
     const updatedUser = await Usuario.findById(req.user.id);
 
     res.json({
@@ -133,7 +133,7 @@ const changePassword = async (req, res) => {
     const { contraseña_actual, contraseña_nueva } = req.body;
 
     // Get current user with password
-    const user = await Usuario.findByEmail(req.user.correo);
+    const user = await Usuario.findByEmail(req.user.email);
     if (!user) {
       return res.status(404).json({ message: 'Usuario no encontrado' });
     }

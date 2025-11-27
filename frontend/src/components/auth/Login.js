@@ -5,7 +5,7 @@ import './Auth.css';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    correo: '',
+    email: '',
     contraseña: ''
   });
   const [error, setError] = useState('');
@@ -60,9 +60,9 @@ const Login = () => {
             <label className="form-label">Correo electrónico</label>
             <input
               type="email"
-              name="correo"
+              name="email"
               className="form-control"
-              value={formData.correo}
+              value={formData.email}
               onChange={handleChange}
               placeholder="tu@email.com"
               required

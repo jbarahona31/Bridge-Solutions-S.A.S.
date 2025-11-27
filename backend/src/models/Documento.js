@@ -32,7 +32,7 @@ class Documento {
 
   static async getAll() {
     const [rows] = await pool.execute(`
-      SELECT d.*, c.servicio, u.nombre 
+      SELECT d.*, c.servicio, u.nombre_completo 
       FROM documentos d 
       JOIN cotizaciones c ON d.cotizacion_id = c.id 
       JOIN usuarios u ON d.usuario_id = u.id 

@@ -2,16 +2,16 @@ const { pool } = require('../config/database');
 
 class Usuario {
   static async create(userData) {
-    const { nombre, correo, usuario, contraseña_hash, rol = 'usuario' } = userData;
+    const { nombre_completo, email, usuario, contraseña_hash, rol = 'cliente' } = userData;
     const [result] = await pool.execute(
-      'INSERT INTO usuarios (nombre, correo, usuario, contraseña_hash, rol) VALUES (?, ?, ?, ?, ?)',
-      [nombre, correo, usuario, contraseña_hash, rol]
+      'INSERT INTO usuarios (nombre_completo, email, usuario, contraseña_hash, rol) VALUES (?, ?, ?, ?, ?)',
+      [nombre_completo, email, usuario, contraseña_hash, rol]
     );
     return result;
   }
 
-  static async findByEmail(correo) {
-    const [rows] = await pool.execute('SELECT * FROM usuarios WHERE correo = ?', [correo]);
+  static async findByEmail(email) {
+    const [rows] = await pool.execute('SELECT * FROM usuarios WHERE email = ?', [email]);
     return rows[0];
   }
 
@@ -21,15 +21,15 @@ class Usuario {
   }
 
   static async findById(id) {
-    const [rows] = await pool.execute('SELECT id, nombre, correo, usuario, rol, fecha_registro FROM usuarios WHERE id = ?', [id]);
+    const [rows] = await pool.execute('SELECT id, nombre_completo, email, usuario, rol, fecha_registro FROM usuarios WHERE id = ?', [id]);
     return rows[0];
   }
 
   static async updateById(id, userData) {
-    const { nombre, correo } = userData;
+    const { nombre_completo, email } = userData;
     const [result] = await pool.execute(
-      'UPDATE usuarios SET nombre = ?, correo = ? WHERE id = ?',
-      [nombre, correo, id]
+      'UPDATE usuarios SET nombre_completo = ?, email = ? WHERE id = ?',
+      [nombre_completo, email, id]
     );
     return result;
   }
@@ -43,7 +43,7 @@ class Usuario {
   }
 
   static async getAll() {
-    const [rows] = await pool.execute('SELECT id, nombre, correo, usuario, rol, fecha_registro FROM usuarios');
+    const [rows] = await pool.execute('SELECT id, nombre_completo, email, usuario, rol, fecha_registro FROM usuarios');
     return rows;
   }
 }

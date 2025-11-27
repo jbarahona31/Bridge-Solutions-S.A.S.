@@ -167,7 +167,7 @@ JWT_EXPIRE=24h
 - `email` - VARCHAR(255), UNIQUE
 - `usuario` - VARCHAR(100), UNIQUE
 - `contraseña_hash` - VARCHAR(255)
-- `rol` - ENUM('usuario', 'administrador')
+- `rol` - ENUM('usuario', 'administrador', 'cliente', 'colaborador'), DEFAULT 'cliente'
 - `fecha_registro` - TIMESTAMP
 
 ### Tabla `cotizaciones`
@@ -198,6 +198,30 @@ JWT_EXPIRE=24h
 - Validación de sesión y expiración
 - Helmet para headers de seguridad
 - CORS configurado
+
+---
+
+## 🧪 Pruebas API con Postman
+
+### Registro
+**POST** `http://localhost:3000/api/auth/register`
+```json
+{
+  "nombre_completo": "Carlos Pérez",
+  "email": "carlos@cliente.com",
+  "usuario": "carlosp",
+  "contraseña": "123456"
+}
+```
+
+### Login
+**POST** `http://localhost:3000/api/auth/login`
+```json
+{
+  "email": "carlos@cliente.com",
+  "contraseña": "123456"
+}
+```
 
 ---
 

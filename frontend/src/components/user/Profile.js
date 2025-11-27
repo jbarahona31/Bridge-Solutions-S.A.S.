@@ -6,8 +6,8 @@ import './User.css';
 const Profile = () => {
   const { user, updateUserProfile } = useAuth();
   const [formData, setFormData] = useState({
-    nombre: '',
-    correo: ''
+    nombre_completo: '',
+    email: ''
   });
   const [passwordData, setPasswordData] = useState({
     contraseña_actual: '',
@@ -23,8 +23,8 @@ const Profile = () => {
   useEffect(() => {
     if (user) {
       setFormData({
-        nombre: user.nombre || '',
-        correo: user.correo || ''
+        nombre_completo: user.nombre_completo || '',
+        email: user.email || ''
       });
     }
   }, [user]);
@@ -103,9 +103,9 @@ const Profile = () => {
         <div className="profile-card">
           <div className="profile-header">
             <div className="profile-avatar">
-              {getInitials(user?.nombre)}
+              {getInitials(user?.nombre_completo)}
             </div>
-            <h2>{user?.nombre}</h2>
+            <h2>{user?.nombre_completo}</h2>
             <p>@{user?.usuario}</p>
             <span className={`badge ${user?.rol === 'administrador' ? 'badge-admin' : 'badge-user'}`}>
               {user?.rol}
@@ -123,9 +123,9 @@ const Profile = () => {
                 <label className="form-label">Nombre completo</label>
                 <input
                   type="text"
-                  name="nombre"
+                  name="nombre_completo"
                   className="form-control"
-                  value={formData.nombre}
+                  value={formData.nombre_completo}
                   onChange={handleChange}
                   required
                 />
@@ -135,9 +135,9 @@ const Profile = () => {
                 <label className="form-label">Correo electrónico</label>
                 <input
                   type="email"
-                  name="correo"
+                  name="email"
                   className="form-control"
-                  value={formData.correo}
+                  value={formData.email}
                   onChange={handleChange}
                   required
                 />
