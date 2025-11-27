@@ -37,7 +37,28 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
 
-              {/* User Protected Routes */}
+              {/* User Protected Routes - for cliente role */}
+              <Route path="/user/dashboard" element={
+                <ProtectedRoute rolPermitido={['cliente', 'usuario']}>
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
+              
+              {/* Admin Protected Routes - for admin role */}
+              <Route path="/admin/dashboard" element={
+                <ProtectedRoute rolPermitido={['admin', 'administrador']}>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              } />
+
+              {/* Colaborador Protected Routes - for colaborador role */}
+              <Route path="/colaborador/dashboard" element={
+                <ProtectedRoute rolPermitido="colaborador">
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
+
+              {/* Legacy routes for backward compatibility */}
               <Route path="/dashboard" element={
                 <ProtectedRoute>
                   <Dashboard />
@@ -69,7 +90,7 @@ function App() {
                 </ProtectedRoute>
               } />
 
-              {/* Admin Protected Routes */}
+              {/* Admin Protected Routes (legacy) */}
               <Route path="/admin" element={
                 <ProtectedRoute adminOnly>
                   <AdminDashboard />

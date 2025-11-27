@@ -24,11 +24,16 @@ const Login = () => {
     setError('');
 
     try {
-      await login(formData);
+      const data = await login(formData);
+      const usuario = data.usuario;
+      
       // Redirect based on role
-      const user = JSON.parse(localStorage.getItem('user'));
-      if (user.rol === 'administrador') {
-        navigate('/admin');
+      if (usuario.rol === 'admin' || usuario.rol === 'administrador') {
+        navigate('/admin/dashboard');
+      } else if (usuario.rol === 'cliente' || usuario.rol === 'usuario') {
+        navigate('/user/dashboard');
+      } else if (usuario.rol === 'colaborador') {
+        navigate('/colaborador/dashboard');
       } else {
         navigate('/dashboard');
       }
