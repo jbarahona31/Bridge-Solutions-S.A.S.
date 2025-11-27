@@ -44,7 +44,7 @@ const register = async (req, res) => {
 
     res.status(201).json({
       message: 'Usuario registrado exitosamente',
-      user: newUser,
+      usuario: newUser,
       token
     });
   } catch (error) {
@@ -55,10 +55,10 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const { email, contraseña } = req.body;
+    const { correo, contraseña } = req.body;
 
-    // Find user by email
-    const user = await Usuario.findByEmail(email);
+    // Find user by correo (email)
+    const user = await Usuario.findByEmail(correo);
     if (!user) {
       return res.status(401).json({ message: 'Credenciales inválidas' });
     }
