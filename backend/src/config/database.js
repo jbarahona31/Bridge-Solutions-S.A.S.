@@ -26,13 +26,13 @@ const initDatabase = async () => {
     await connection.query(`
       CREATE TABLE IF NOT EXISTS usuarios (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        nombre VARCHAR(255) NOT NULL,
-        correo VARCHAR(255) NOT NULL UNIQUE,
+        nombre_completo VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL UNIQUE,
         usuario VARCHAR(100) NOT NULL UNIQUE,
         contraseña_hash VARCHAR(255) NOT NULL,
-        rol ENUM('usuario', 'administrador') DEFAULT 'usuario',
+        rol ENUM('usuario', 'administrador', 'cliente', 'colaborador') DEFAULT 'cliente',
         fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        INDEX idx_correo (correo),
+        INDEX idx_email (email),
         INDEX idx_usuario (usuario)
       ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     `);

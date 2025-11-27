@@ -12,7 +12,7 @@ class Cotizacion {
 
   static async findById(id) {
     const [rows] = await pool.execute(`
-      SELECT c.*, u.nombre, u.correo 
+      SELECT c.*, u.nombre_completo, u.email 
       FROM cotizaciones c 
       JOIN usuarios u ON c.usuario_id = u.id 
       WHERE c.id = ?
@@ -29,7 +29,7 @@ class Cotizacion {
 
   static async getAll(filters = {}) {
     let query = `
-      SELECT c.*, u.nombre, u.correo 
+      SELECT c.*, u.nombre_completo, u.email 
       FROM cotizaciones c 
       JOIN usuarios u ON c.usuario_id = u.id
       WHERE 1=1

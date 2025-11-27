@@ -8,8 +8,8 @@ const { validate } = require('../middleware/validation');
 // Register
 router.post('/register',
   [
-    body('nombre').notEmpty().withMessage('Nombre es requerido'),
-    body('correo').isEmail().withMessage('Correo válido es requerido'),
+    body('nombre_completo').notEmpty().withMessage('Nombre completo es requerido'),
+    body('email').isEmail().withMessage('Email válido es requerido'),
     body('usuario').isLength({ min: 4 }).withMessage('Usuario debe tener al menos 4 caracteres'),
     body('contraseña').isLength({ min: 6 }).withMessage('Contraseña debe tener al menos 6 caracteres')
   ],
@@ -20,7 +20,7 @@ router.post('/register',
 // Login
 router.post('/login',
   [
-    body('correo').isEmail().withMessage('Correo válido es requerido'),
+    body('email').isEmail().withMessage('Email válido es requerido'),
     body('contraseña').notEmpty().withMessage('Contraseña es requerida')
   ],
   validate,
@@ -34,8 +34,8 @@ router.get('/profile', authMiddleware, authController.getProfile);
 router.put('/profile',
   authMiddleware,
   [
-    body('nombre').notEmpty().withMessage('Nombre es requerido'),
-    body('correo').isEmail().withMessage('Correo válido es requerido')
+    body('nombre_completo').notEmpty().withMessage('Nombre completo es requerido'),
+    body('email').isEmail().withMessage('Email válido es requerido')
   ],
   validate,
   authController.updateProfile
