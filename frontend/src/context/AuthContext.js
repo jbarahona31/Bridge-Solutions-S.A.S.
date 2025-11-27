@@ -42,9 +42,12 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (userData) => {
     const response = await authService.register(userData);
-    localStorage.setItem('token', response.token);
-    localStorage.setItem('user', JSON.stringify(response.user));
-    setUser(response.user);
+    const token = response.token;
+    const usuario = response.user;
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(usuario));
+    setUser(usuario);
+    setAuthDataState({ token, usuario });
     return response;
   };
 
@@ -56,8 +59,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   const updateUserProfile = (updatedUser) => {
+    const token = localStorage.getItem('token');
     localStorage.setItem('user', JSON.stringify(updatedUser));
     setUser(updatedUser);
+    if (token) {
+      setAuthDataState({ token, usuario: updatedUser });
+    }
   };
 
   const isAdmin = () => {

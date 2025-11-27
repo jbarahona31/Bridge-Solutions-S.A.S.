@@ -25,7 +25,8 @@ const ProtectedRoute = ({ children, adminOnly = false, rolPermitido = null }) =>
     
     // Check if user's role matches any of the allowed roles
     if (!rolesPermitidos.includes(userRol)) {
-      return <Navigate to="/login" />;
+      // Redirect to appropriate dashboard based on user role
+      return <Navigate to="/dashboard" />;
     }
   }
 
