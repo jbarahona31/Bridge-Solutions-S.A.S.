@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const path = require('path');
 const config = require('./config');
 const { initDatabase } = require('./config/database');
+const { apiLimiter, authLimiter, uploadLimiter } = require('./middleware/rateLimiter');
 
 // Import routes
 const authRoutes = require('./routes/auth');
@@ -20,6 +21,11 @@ app.use(cors());
 // Body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Apply rate limiting
+app.use('/api', apiLimiter);
+app.use('/api/auth', authLimiter);
+app.use('/api/documentos/upload', uploadLimiter);
 
 // Serve uploaded files
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
