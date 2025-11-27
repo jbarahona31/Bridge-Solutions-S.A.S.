@@ -64,7 +64,7 @@ const Navbar = () => {
                 Perfil
               </Link>
               <div className="navbar-user">
-                <span className="user-name">{user.nombre_completo}</span>
+                <span className="user-name">{user.nombre}</span>
                 <span className={`user-role badge ${isAdmin() ? 'badge-admin' : 'badge-user'}`}>
                   {user.rol}
                 </span>
