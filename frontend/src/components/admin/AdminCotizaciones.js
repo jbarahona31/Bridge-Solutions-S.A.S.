@@ -56,11 +56,11 @@ const AdminCotizaciones = () => {
   };
 
   const exportToCSV = () => {
-    const headers = ['ID', 'Usuario', 'Email', 'Servicio', 'Estado', 'Fecha'];
+    const headers = ['ID', 'Usuario', 'Correo', 'Servicio', 'Estado', 'Fecha'];
     const rows = cotizaciones.map(cot => [
       cot.id,
-      cot.nombre_completo,
-      cot.email,
+      cot.nombre,
+      cot.correo,
       cot.servicio,
       cot.estado,
       formatDate(cot.fecha_creacion)
@@ -138,7 +138,7 @@ const AdminCotizaciones = () => {
                   <tr>
                     <th>ID</th>
                     <th>Usuario</th>
-                    <th>Email</th>
+                    <th>Correo</th>
                     <th>Servicio</th>
                     <th>Estado</th>
                     <th>Docs</th>
@@ -152,8 +152,8 @@ const AdminCotizaciones = () => {
                     return (
                       <tr key={cot.id}>
                         <td>#{cot.id}</td>
-                        <td>{cot.nombre_completo}</td>
-                        <td>{cot.email}</td>
+                        <td>{cot.nombre}</td>
+                        <td>{cot.correo}</td>
                         <td>{cot.servicio}</td>
                         <td>
                           <span className={`badge ${badge.class}`}>{badge.text}</span>

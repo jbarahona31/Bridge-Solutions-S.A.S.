@@ -117,8 +117,8 @@ const AdminCotizacionDetail = () => {
 
           <div className="user-info-box">
             <h4>Información del Usuario</h4>
-            <p><strong>Nombre:</strong> {cotizacion.nombre_completo}</p>
-            <p><strong>Email:</strong> {cotizacion.email}</p>
+            <p><strong>Nombre:</strong> {cotizacion.nombre}</p>
+            <p><strong>Correo:</strong> {cotizacion.correo}</p>
           </div>
 
           <div className="form-group">

@@ -5,8 +5,8 @@ import './Auth.css';
 
 const Register = () => {
   const [formData, setFormData] = useState({
-    nombre_completo: '',
-    email: '',
+    nombre: '',
+    correo: '',
     usuario: '',
     contraseña: '',
     confirmar_contraseña: ''
@@ -60,9 +60,9 @@ const Register = () => {
             <label className="form-label">Nombre completo</label>
             <input
               type="text"
-              name="nombre_completo"
+              name="nombre"
               className="form-control"
-              value={formData.nombre_completo}
+              value={formData.nombre}
               onChange={handleChange}
               placeholder="Juan Pérez"
               required
@@ -73,9 +73,9 @@ const Register = () => {
             <label className="form-label">Correo electrónico</label>
             <input
               type="email"
-              name="email"
+              name="correo"
               className="form-control"
-              value={formData.email}
+              value={formData.correo}
               onChange={handleChange}
               placeholder="tu@email.com"
               required

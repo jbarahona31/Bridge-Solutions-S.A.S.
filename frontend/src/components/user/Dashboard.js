@@ -68,7 +68,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="container">
         <div className="dashboard-header">
-          <h1>Bienvenido, {user?.nombre_completo}</h1>
+          <h1>Bienvenido, {user?.nombre}</h1>
           <p>Panel de control de tu cuenta</p>
         </div>
 

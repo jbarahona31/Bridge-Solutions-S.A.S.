@@ -126,7 +126,7 @@ const AdminDashboard = () => {
                     return (
                       <tr key={cot.id}>
                         <td>#{cot.id}</td>
-                        <td>{cot.nombre_completo}</td>
+                        <td>{cot.nombre}</td>
                         <td>{cot.servicio}</td>
                         <td>
                           <span className={`badge ${badge.class}`}>{badge.text}</span>
@@ -160,8 +160,8 @@ const AdminDashboard = () => {
                 <tbody>
                   {usuarios.slice(0, 5).map((user) => (
                     <tr key={user.id}>
-                      <td>{user.nombre_completo}</td>
-                      <td>{user.email}</td>
+                      <td>{user.nombre}</td>
+                      <td>{user.correo}</td>
                       <td>
                         <span className={`badge ${user.rol === 'administrador' ? 'badge-admin' : 'badge-user'}`}>
                           {user.rol}
