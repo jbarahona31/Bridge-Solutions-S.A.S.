@@ -11,6 +11,7 @@ const authRoutes = require('./routes/auth');
 const cotizacionesRoutes = require('./routes/cotizaciones');
 const documentosRoutes = require('./routes/documentos');
 const usuariosRoutes = require('./routes/usuarios');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/cotizaciones', cotizacionesRoutes);
 app.use('/api/documentos', documentosRoutes);
 app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
