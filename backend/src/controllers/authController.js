@@ -7,7 +7,7 @@ const register = async (req, res) => {
   try {
     const { nombre, correo, usuario, contraseña, rol } = req.body;
 
-    // Check if email already exists
+    // Check if correo already exists
     const existingEmail = await Usuario.findByEmail(correo);
     if (existingEmail) {
       return res.status(400).json({ message: 'El correo electrónico ya está registrado' });
@@ -57,7 +57,7 @@ const login = async (req, res) => {
   try {
     const { correo, contraseña } = req.body;
 
-    // Find user by correo (email)
+    // Find user by correo
     const user = await Usuario.findByEmail(correo);
     if (!user) {
       return res.status(401).json({ message: 'Credenciales inválidas' });
@@ -109,7 +109,7 @@ const updateProfile = async (req, res) => {
   try {
     const { nombre, correo } = req.body;
 
-    // Check if email is already used by another user
+    // Check if correo is already used by another user
     const existingEmail = await Usuario.findByEmail(correo);
     if (existingEmail && existingEmail.id !== req.user.id) {
       return res.status(400).json({ message: 'El correo electrónico ya está en uso' });
